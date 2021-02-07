@@ -48,4 +48,6 @@ b_s(X,Y):-parent(Z,X),parent(Z,Y).
 b_s(X):-parent(Z,X),parent(Z,Y),woman(Z),dif(X,Y),write(Y),nl,fail.
 grand_pa(X,Y):-parent(Z,Y),parent(X,Z),man(X).
 grand_pas(X):-parent(Z,X),parent(Y,Z),man(Y),write(Y),nl,fail.
+grand_ma(X,Y):-parent(Z,Y),parent(X,Z),woman(X).
+grand_mas(X):-parent(Z,X),parent(Y,Z),woman(Y),write(Y),nl,fail.
 
