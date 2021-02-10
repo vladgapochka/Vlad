@@ -54,3 +54,5 @@ grand_pa_and_son(X,Y):-grand_pa(X,Y),man(Y);grand_pa(Y,X),man(X).
 grand_pa_and_da(X,Y):-grand_pa(X,Y),woman(Y);grand_pa(Y,X),woman(X).
 uncle(X,Y):-brother(X,Z),parent(Z,Y),dif(X,Z).
 uncles(X):-parent(Y,X),brother(Z,Y),dif(Y,Z),write(Z),nl,fail.
+aunt(X,Y):-sister(X,Z),parent(Z,Y),dif(X,Z).
+aunts(X):-parent(Y,X),sister(Z,Y),dif(Y,Z),write(Z),nl,fail.
