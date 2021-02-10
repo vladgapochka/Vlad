@@ -41,7 +41,7 @@ mother(X):-parent(Y,X),woman(Y),write(Y),nl,fail.
 son(X,Y):-parent(Y,X).
 son(X):-parent(X,Y),man(Y),write(Y),nl,fail.
 brother(X,Y):-parent(Z,X),parent(Z,Y),man(X).
-brother(X):-parent(Y,X),parent(Y,Z),man(Z),dif(X,Z),write(Z),nl,fail.
+brothers(X):-parent(Y,X),parent(Y,Z),man(Z),dif(X,Z),write(Z),nl,fail.
 sister(X,Y):-parent(Z,X),parent(Z,Y),woman(X).
 sister(X):-parent(Y,X),parent(Y,Z),woman(Z),dif(X,Z),write(Z),nl,fail.
 b_s(X,Y):-parent(Z,X),parent(Z,Y).
@@ -52,3 +52,5 @@ grand_ma(X,Y):-parent(Z,Y),parent(X,Z),woman(X).
 grand_mas(X):-parent(Z,X),parent(Y,Z),woman(Y),write(Y),nl,fail.
 grand_pa_and_son(X,Y):-grand_pa(X,Y),man(Y);grand_pa(Y,X),man(X).
 grand_pa_and_da(X,Y):-grand_pa(X,Y),woman(Y);grand_pa(Y,X),woman(X).
+uncle(X,Y):-brother(X,Z),parent(Z,Y),dif(X,Z).
+uncles(X):-parent(Y,X),brother(Z,Y),dif(Y,Z),write(Z),nl,fail.
