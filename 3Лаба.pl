@@ -5,4 +5,6 @@ max(X,Y,Z,U):-Y>X,Y>Z,U is Y.
 max(X,Y,Z,U):-Z>X,Z>Y,U is Z.
 fact(1,1):-!.
 fact(N,X):-N1 is N-1,fact(N1,X1),X is X1*N.
-
+fact(N,X):-factorial(N,X,1).
+factorial(1,X,X):-!.
+factorial(N,X,X1):-N1 is N-1,X2 is X1*N,factorial(N1,X,X2).
