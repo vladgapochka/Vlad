@@ -19,3 +19,5 @@ sum_up(N,X):-N1 is  N div 10,sum_up(N1,X1),X is X1 + N mod 10.
 sum_down(N,X):-sum_down(N,0,X).
 sum_down(0,X,X):-!.
 sum_down(N,X,Sum):- N2 - N mod 10,N1 - N div 10,X1-X+N2,sum_down(N1,X1,Sum).
+max_up(0,0):-!.
+max_up(N,X):-N1 is N div 10, max_up(N1,X2), CurX1 is N mod 10, max(CurX1,X2,X) .
