@@ -16,3 +16,6 @@ fib_down(N,CurX1,CurX2,X):-N1 is N-1,CurX3 is CurX1 + CurX2,fib_down(N1,CurX2,Cu
 fib_down(N,X):-fib_down(N,1,1,X).
 sum_up(0,0):-!.
 sum_up(N,X):-N1 is  N div 10,sum_up(N1,X1),X is X1 + N mod 10.
+sum_down(N,X):-sum_down(N,0,X).
+sum_down(0,X,X):-!.
+sum_down(N,X,Sum):- N2 - N mod 10,N1 - N div 10,X1-X+N2,sum_down(N1,X1,Sum).
