@@ -135,3 +135,26 @@ pr_vessel:-
     next_to([stakan,_],[_,milk],Vessel),  % и сосуда с молоком  находится около банки
 
     write(Vessel).
+
+pr_talant:-
+    Talant=[_,_,_,_],
+    in_list(Talant,[voronov,_]),
+    in_list(Talant,[pavlov,_]),
+    in_list(Talant,[levitsky,_]),
+    in_list(Talant,[sakharov,_]),
+
+    in_list(Talant,[_,dancer]),
+    in_list(Talant,[_,painter]),
+    in_list(Talant,[_,singer]),
+    in_list(Talant,[_,writer]),
+
+    not(in_list(Talant,[voronov,singer])),%воронов не певец
+    not(in_list(Talant,[levitsky,singer])),%Левицкий не певез
+
+    not(in_list(Talant,[pavlov,painter])),%Павлов не художник
+    not(in_list(Talant,[pavlov,writer])),%павлов не писатель
+
+    not(in_list(Talant,[sakharov,writer])),%Сахаров не писатель
+    not(in_list(Talant,[voronov,writer])),%Воронов не писатель
+
+    write(Talant).
