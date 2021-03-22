@@ -158,3 +158,27 @@ pr_talant:-
     not(in_list(Talant,[voronov,writer])),%Воронов не писатель
 
     write(Talant).
+
+pr_athletes:-
+    Sport=[_,_,_],
+    in_list(Sport,[michael,_,basketball,_]),
+    in_list(Sport,[simon,israel,_,_]),
+    in_list(Sport,[richard,_,_,_]),
+    in_list(Sport,[_,australia,_,_]),
+    in_list(Sport,[_,_,cricket,1]),
+    in_list(Sport,[_,america,_,_]),
+    in_list(Sport,[_,_,tennis,_]),
+    in_list(Sport,[_,_,_,2]),
+    in_list(Sport,[_,_,_,3]),
+
+    in_list(Sport,[michael,_,_,Num1]),in_list(Sport,[_,america,_,Num2]),Num1<Num2,%Майкл играет в баскетбол и играет лучше чем американец
+    in_list(Sport,[simon,_,_,Num3]),in_list(Sport,[_,_,tennis,Num4]),Num3<Num4,%Саймон играет лучше теннисиста
+
+    not(in_list(Sport,[simon,_,tennis,_])),%Саймон не теннисист
+    not(in_list(Sport,[michael,america,_,_])),%Майкл не американец
+
+
+    in_list(Sport,[WHO1,australia,_,_]),write("Австралиец это - "), write(WHO1),nl,
+    in_list(Sport,[richard,_,THAN,_]),write("Ричард увлекается - "), write(THAN),nl,
+
+    write(Sport).
