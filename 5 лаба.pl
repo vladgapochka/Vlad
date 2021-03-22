@@ -182,3 +182,28 @@ pr_athletes:-
     in_list(Sport,[richard,_,THAN,_]),write("Ричард увлекается - "), write(THAN),nl,
 
     write(Sport).
+
+pr_town:-
+    Town=[_,_,_,_,_],
+    in_list(Town,[alik,_]),
+    in_list(Town,[borya,_]),
+    in_list(Town,[vitya,_]),
+    in_list(Town,[lena,_]),
+    in_list(Town,[dasha,_]),
+
+    in_list(Town,[_,kharkiv]),
+    in_list(Town,[_,ymani]),
+    in_list(Town,[_,poltava]),
+    in_list(Town,[_,slavyansk]),
+    in_list(Town,[_,kramatorsk]),
+
+    (not(in_list(Town,[alik,ymani])) -> (in_list(Town,[borya,kramatorsk]));%Если Алик не из Умани, то Боря из Краматорска
+     in_list(Town,[alik,ymani])),%иначе Алик из Умани
+    (not(in_list(Town,[vitya,slavyansk])) -> (in_list(Town,[lena,kharkiv]));%Если Витя не из Славянска, то Лена приехала из Харькова
+     in_list(Town,[vitya,slavyansk])),% иначе Витя из Славинска
+    (in_list(Town,[borya,kharkiv]);%Боря из Харькова
+     in_list(Town,[vitya,kharkiv])), % или Витя из Харького
+    (in_list(Town,[dasha,ymani]);%Даша из Умани
+     in_list(Town,[lena,kramatorsk])),%или Лена из Краматорска.
+
+    write(Town).
