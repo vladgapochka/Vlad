@@ -10,7 +10,6 @@ sub_set(Sub_set,[_|Set]):-sub_set(Sub_set,Set).
 in_list([El|_],El).
 in_list([_|T],El):-in_list(T,El).
 
-
 sprava_next(_,_,[_]):-fail.
 sprava_next(A,B,[A|[B|_]]).
 sprava_next(A,B,[_|List]):-sprava_next(A,B,List).
@@ -18,7 +17,6 @@ sprava_next(A,B,[_|List]):-sprava_next(A,B,List).
 sleva_next(_,_,[_]):-fail.
 sleva_next(A,B,[B|[A|_]]).
 sleva_next(A,B,[_|List]):-sleva_next(A,B,List).
-
 
 next_to(A,B,List):-sprava_next(A,B,List).
 next_to(A,B,List):-sleva_next(A,B,List).
@@ -50,3 +48,19 @@ pr_ein:- Houses=[_,_,_,_,_],
 		in_list(Houses,[_,WHO2,_,zebra,_]),
 		write(Houses),
 		write(WHO1),nl,write(WHO2).
+
+pr_friends:-
+    Friend=[_,_,_],
+    in_list(Friend,[belokurov,_]),
+    in_list(Friend,[ryzhov,_]),
+    in_list(Friend,[chernov,_]),
+    in_list(Friend,[_,redhead]),
+    in_list(Friend,[_,blonde]),
+    in_list(Friend,[_,dark-haired]),
+
+    not(in_list(Friend,[belokurov, blonde])),
+    not(in_list(Friend,[belokurov,dark-haired])),
+    (in_list(Friend,[ryzhov, dark-haired]);in_list(Friend,[ryzhov,blondin])),
+    (in_list(Friend,[chernov,blonde]);in_list(Friend,[chernov, redhead])),
+
+    write(Friend).
