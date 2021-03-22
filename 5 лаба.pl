@@ -6,7 +6,7 @@ sub_posl(Sub_list,[_|List]):-sub_posl(Sub_list,List).
 sub_set([],[]).
 sub_set([H|Sub_set],[H|Set]):-sub_set(Sub_set,Set).
 sub_set(Sub_set,[_|Set]):-sub_set(Sub_set,Set).
-
+%есть ли элемент в списке
 in_list([El|_],El).
 in_list([_|T],El):-in_list(T,El).
 
@@ -20,7 +20,7 @@ sleva_next(A,B,[_|List]):-sleva_next(A,B,List).
 
 next_to(A,B,List):-sprava_next(A,B,List).
 next_to(A,B,List):-sleva_next(A,B,List).
-
+%определяет номер элемента (индекс)
 el_no(List,Num,El):-el_no(List,Num,1,El).
 el_no([H|_],Num,Num,H):-!.
 el_no([_|Tail],Num,Ind,El):-Ind1 is Ind+1,el_no(Tail,Num,Ind1,El).
@@ -65,6 +65,7 @@ pr_friends:-
 
     write(Friend).
 
+%имя,платье,туфли
 pr_girl:-
     Friend=[_,_,_],
     in_list(Friend,[_,white,_]),
@@ -83,3 +84,27 @@ pr_girl:-
      not(in_list(Friend,[valya,_,white])),
      not(in_list(Friend,[natasha,green,_])),
      write(Friend).
+
+pr_workers:-
+    Workers=[_,_,_],
+    in_list(Workers,[borisov,_,_,_,_,_]),
+    in_list(Workers,[ivanov,_,_,_,_,_]),
+    in_list(Workers,[semenov,_,_,_,_,_]),
+%слесарь,токарь,сварщик
+    in_list(Workers,[_,locksmith,_,_,_,_]),
+    in_list(Workers,[_,turner,_,_,_,_]),
+    in_list(Workers,[_,welder,_,_,_,_]),
+
+    in_list(Workers,[_,_,brother,_,_,_]),
+    in_list(Workers,[_,_,_,_,_,sister]),
+    in_list(Workers,[_,_,_,old,_,_]),
+    in_list(Workers,[_,_,_,young,_,_]),
+    in_list(Workers,[_,_,_,_,married,_]),
+
+    in_list(Workers,[borisov,_,_,_,_,sister]),
+    in_list(Workers,[semenov,_,_,old,married,_]),
+
+     not(in_list(Workers,[_,locksmith,brother,old,_,sister])),
+     not(in_list(Workers,[semenov,turner,_,_,_,_])),
+     not(in_list(Workers,[borisov,locksmith,_,_,_,_])),
+     write(Workers).
