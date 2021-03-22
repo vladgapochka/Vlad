@@ -22,5 +22,14 @@ sum_down(N,X,Sum):- N2 - N mod 10,N1 - N div 10,X1-X+N2,sum_down(N1,X1,Sum).
 max_up(0,0):-!.
 max_up(N,X):-N1 is N div 10, max_up(N1,X2), CurX1 is N mod 10, max(CurX1,X2,X).
 max_down(N,X):-max_down(N,0,X).
-max_down(0,X,X):-!.
-max_down(CurX,Max,X):-CurX1 is CurX mod 10,CurY is CurX div 10, CurY1 is CurY mod 10,max(CurX1,CurY1,C),max(C,Max,U),max_down(CurY,U,X).
+max_down(0,X,X):-!. %когда нет цифр, остановка
+max_down(CurX,Max,X):-CurX1 is CurX mod 10,CurY is CurX div 10,
+CurY1 is CurY mod 10,max(CurX1,CurY1,C),max(C,Max,U),max_down(CurY,U,X).
+
+sum_up_del3(0,0):-!.
+sum_up_del3(N,X):-N1 is N div 10,sum_up(N1,X1),del3(N,Y),X is X1 + Y.
+
+sum_down_del3(N,X):-sum_down_del3(N,0,X).
+sum_down_del3(0,X,X):-!.
+sum_down_del3(A,Sum,X):- A1 is A div 10,del3(A,Y),Sum1 is Sum+Y,
+sum_down_del3(A1,Sum1,X).
