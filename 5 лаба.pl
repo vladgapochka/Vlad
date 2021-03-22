@@ -108,3 +108,30 @@ pr_workers:-
      not(in_list(Workers,[semenov,turner,_,_,_,_])),
      not(in_list(Workers,[borisov,locksmith,_,_,_,_])),
      write(Workers).
+% фамилии слесаря, токаря и сварщика.
+pr_vessel:-
+    Vessel=[_,_,_,_],
+    in_list(Vessel,[butilka,_]),
+    in_list(Vessel,[stakan,_]),
+    in_list(Vessel,[kuvshin,_]),
+    in_list(Vessel,[banka,_]),
+
+    in_list(Vessel,[_,milk]),
+    in_list(Vessel,[_,limonad]),
+    in_list(Vessel,[_,kvas]),
+    in_list(Vessel,[_,water]),
+
+    not(in_list(Vessel,[butilka,water])),
+    not(in_list(Vessel,[butilka,milk])),
+
+    not(in_list(Vessel,[banka,limonad])),
+    not(in_list(Vessel,[banka,water])),
+
+
+   sleva_next([_,limonad],[kuvshin,_],Vessel), %сосуд с лимонадом находится между кувшином
+   sprava_next([_,limonad],[_,kvas],Vessel),    % и сосудом с квасом находится между кувшином
+
+    next_to([stakan,_],[banka,_],Vessel),  %Стакан находится около банки
+    next_to([stakan,_],[_,milk],Vessel),  % и сосуда с молоком  находится около банки
+
+    write(Vessel).
