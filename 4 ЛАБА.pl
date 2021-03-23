@@ -16,3 +16,7 @@ sum_list_up([H|T],S):-sum_list_up(T,S1),S is S1+H.
 %выводит номер элемента
 list_el_numb([H|T],Elem,Number):-list_el_numb([H|T],Elem,Number,0).
 list_el_numb([H|T],Elem,Number,Count):-Count1 is Count+1,(H = Elem,Number = Count1 -> !;list_el_numb(T,Elem,Number,Count1)).
+
+%проверяет есть ли элемент в списке и если он есть выводит его номер
+proverka:-write("Количество элементов в списке: "),read(N),nl,write("Введите элементы списка"),readList(N,[H|T]),nl,write("Введите элемент: "),read(Elem),nl,list_el_numb([H|T],Elem,Number),write(Number),!.
+proverka:-write("Нет элемента").
