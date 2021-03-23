@@ -13,3 +13,6 @@ sum_list:-write("Введите количество элементов"),nl,read(N),write("Введите элемен
 
 sum_list_up([],0):-!.
 sum_list_up([H|T],S):-sum_list_up(T,S1),S is S1+H.
+%выводит номер элемента
+list_el_numb([H|T],Elem,Number):-list_el_numb([H|T],Elem,Number,0).
+list_el_numb([H|T],Elem,Number,Count):-Count1 is Count+1,(H = Elem,Number = Count1 -> !;list_el_numb(T,Elem,Number,Count1)).
