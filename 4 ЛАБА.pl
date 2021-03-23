@@ -32,3 +32,7 @@ min_list_down([H|T],M,Min):-(H<M -> M1 is H;M1 is M),min_list_down(T,M1,Min).
 min_list_down([H|T],Min):- min_list_down(T,H,Min).
 
 proverka_min:-write("Количество элементов в списке: "),nl,read(N),write("Введите элементы списка"),nl,readList(N,List),min_list_down(List,Min),write("Минимальный элемент списка: "),write(Min),!.
+%возвращает true, если элемент есть в списке.
+prov_el([El|_],El):-!.
+prov_el([_|T], El):-prov_el(T, El).
+
