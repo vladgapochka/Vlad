@@ -23,3 +23,6 @@ proverka:-write("Нет элемента").
 %считает номер элемента и выводит его
 proverka_elem:-write("Количество элементов в списке: "),nl,read(N),write("Введите элементы списка"),nl,readList(N,List),write("Введите номер элемента: "),nl,read(Number),list_el_numb(List,Elem,Number),write(Elem),!.
 proverka_elem:-write("Нет элемента с таким номером").
+%вывод или проверяет на минимальный элемент
+min_list_up([H],H):-!.
+min_list_up([H|T], Min):-min_list_up(T,Min1),(H<Min1 -> Min is H;Min is Min1).
