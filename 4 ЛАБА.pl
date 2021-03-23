@@ -20,3 +20,6 @@ list_el_numb([H|T],Elem,Number,Count):-Count1 is Count+1,(H = Elem,Number = Coun
 %проверяет есть ли элемент в списке и если он есть выводит его номер
 proverka:-write("Количество элементов в списке: "),read(N),nl,write("Введите элементы списка"),readList(N,[H|T]),nl,write("Введите элемент: "),read(Elem),nl,list_el_numb([H|T],Elem,Number),write(Number),!.
 proverka:-write("Нет элемента").
+%считает номер элемента и выводит его
+proverka_elem:-write("Количество элементов в списке: "),nl,read(N),write("Введите элементы списка"),nl,readList(N,List),write("Введите номер элемента: "),nl,read(Number),list_el_numb(List,Elem,Number),write(Elem),!.
+proverka_elem:-write("Нет элемента с таким номером").
