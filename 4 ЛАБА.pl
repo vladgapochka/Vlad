@@ -39,3 +39,6 @@ prov_el([_|T], El):-prov_el(T, El).
 zam(List,List1):-zam(List,[],List1).
 zam([],List1,List1).
 zam([H|List],Temp,List1):-zam(List,[H|Temp],List1).
+
+p([],_):-!.
+p([Head|Tail],[HeadList|TailList]):-(Head is HeadList -> p(Tail,TailList);p([Head|Tail],TailList)).
