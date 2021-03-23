@@ -10,3 +10,6 @@ sum_list_down(List,Sum):-sum_list_down(List,0,Sum).
 sum_list_down([],Sum,Sum):-!.
 sum_list_down([H|T],S,Sum):-S1 is H + S,sum_list_down(T,S1,Sum).
 sum_list:-write("Введите количество элементов"),nl,read(N),write("Введите элементы списка:"),nl,readList(N,List),sum_list_down(List,Sum),write("Сумма = "),write(Sum).
+
+sum_list_up([],0):-!.
+sum_list_up([H|T],S):-sum_list_up(T,S1),S is S1+H.
