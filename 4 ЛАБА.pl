@@ -42,3 +42,6 @@ zam([H|List],Temp,List1):-zam(List,[H|Temp],List1).
 
 p([],_):-!.
 p([Head|Tail],[HeadList|TailList]):-(Head is HeadList -> p(Tail,TailList);p([Head|Tail],TailList)).
+%удаляет элемент по номеру
+del(0,[_|Z], Z):-!.
+del(X,[H|Y],[H|Z]):-X1 is X-1,del(X1,Y,Z).
