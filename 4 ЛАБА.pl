@@ -26,3 +26,7 @@ proverka_elem:-write("Нет элемента с таким номером").
 %вывод или проверяет на минимальный элемент
 min_list_up([H],H):-!.
 min_list_up([H|T], Min):-min_list_up(T,Min1),(H<Min1 -> Min is H;Min is Min1).
+
+min_list_down([],Min,Min):-!.
+min_list_down([H|T],M,Min):-(H<M -> M1 is H;M1 is M),min_list_down(T,M1,Min).
+min_list_down([H|T],Min):- min_list_down(T,H,Min).
