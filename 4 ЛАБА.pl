@@ -45,3 +45,6 @@ p([Head|Tail],[HeadList|TailList]):-(Head is HeadList -> p(Tail,TailList);p([Hea
 %удаляет элемент по номеру
 del(0,[_|Z], Z):-!.
 del(X,[H|Y],[H|Z]):-X1 is X-1,del(X1,Y,Z).
+%удалит все элементы по заданному элементу
+del_elem([],_,[]).
+del_elem([H|T],X,List):-(H=X->del_elem(T,X,List);List=[H|T1],del_elem(T,X,T1)).
