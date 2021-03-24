@@ -48,3 +48,9 @@ del(X,[H|Y],[H|Z]):-X1 is X-1,del(X1,Y,Z).
 %удалит все элементы по заданному элементу
 del_elem([],_,[]).
 del_elem([H|T],X,List):-(H=X->del_elem(T,X,List);List=[H|T1],del_elem(T,X,T1)).
+%проверка на уникальность списка
+kolwo([H|T],X,K):-kol([H|T],X,K,0).
+kol([],_,K,K):-!.
+kol([H|T],X,K,Tec):-(H is X -> T1 is  Tec+1;T1 is Tec),kol(T,X,K,T1).
+ynic([_]):-!.
+ynic([H|T]):-kolwo([H|T],H,K),K is 1,ynic(T).
