@@ -69,3 +69,11 @@ kol_p_m([],KP,KP,KM,KM):-!.
 kol_p_m([43|T],KP,KolP,KM,KolM):-KP1 is KP+1,kol_p_m(T,KP1,KolP,KM,KolM).
 kol_p_m([45|T],KP,KolP,KM,KolM):-KM1 is KM+1,kol_p_m(T,KP,KolP,KM1,KolM).
 kol_p_m([_|T],KP,KolP,KM,KolM):-kol_p_m(T,KP,KolP,KM,KolM).
+
+
+ranshe:-read_str(A,_),pr_w(A,0,Indw),pr_x(A,0,Indx),(Indw<Indx->write("w встречается раньше");write("x встречается раньше")).
+pr_w([],_,_):-write("Не существует w"),!,fail.
+pr_w([Head|Tail],I,Ind):-(Head =:=119 -> Ind is I;I1 is I+1,pr_w(Tail,I1,Ind)).
+
+pr_x([],_,_):-write("Не существует x"),!,fail.
+pr_x([Head|Tail],I,Ind):-(Head =:=120 -> Ind is I;I1 is I+1,pr_x(Tail,I1,Ind)).
