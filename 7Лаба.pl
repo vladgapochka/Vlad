@@ -91,3 +91,9 @@ long:-read_str(Str,Length),(Length>10 -> long(Str,N); long(Str,Length,12,N)),wri
 long(Str,N):-N=[_,_,_,_,_,_],append1(N,_,Str),!.
 long(N,12,_,N):-!.
 long(Str,L,Length,N):-L1 is L+1,append1(Str,[111],Str1),long(Str1,L1,Length,N).
+
+zamch:-read_str(St,_),zamch(St,0,[],NSt),reverse(NSt,NStR),write_str(NStR).
+zamch([],_,St,St):-!.
+zamch([H|T],Counter,NSt,NStr):-Counter1 is Counter+1,0 is Counter1 mod 2,(H\=97,H\=98 -> append1([97],NSt,NSt1),zamch(T,Counter1,NSt1,NStr),!;
+                                                                             append1([99],NSt,NSt1),zamch(T,Counter1,NSt1,NStr)),!.
+zamch([H|T],Counter,NSt,NStr):-Counter1 is Counter+1,append1([H],NSt,NSt1),zamch(T,Counter1,NSt1,NStr).
