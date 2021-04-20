@@ -144,5 +144,11 @@ num([],_,LastWord,LW,ListWord):-append1(LW,[LastWord],ListWord),!.
 num([H|T],List2,BufferWord,LW,ListWord):-not(in_list(List2,H)),append1(BufferWord,[H],BufferWordN),num(T,List2,BufferWordN,LW,ListWord),!.
 num([_|T],List2,BufferWord,LW,ListWord):-append1(LW,[BufferWord],NLW),num(T,List2,[],NLW,ListWord).
 
+wiv_1_2_3:-read_str(St,Length),wiv_1_2_3(St),wiv_1_2_3(St,Length).
+wiv_1_2_3([H|T]):-write("First = "),put(H),nl,reverse([H|T],[HR|_]),write("End = "),put(HR),nl.
+wiv_1_2_3(List,Length):-not(0 is Length mod 2),L is Length div 2+1,index(List,El,L,0),write("Middle = "),put(El),!.
+wiv_1_2_3(_,_):-true.
 
+index([H|T],El,Num):-index([H|T],El,Num,0).
+index([H|T],El,Num,Chet):-Chet1 is Chet+1,(H = El,Num = Chet1 -> !;index(T,El,Num,Chet1)).
 
