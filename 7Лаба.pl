@@ -82,3 +82,7 @@ big:-read_str(St1,N1),read_str(St2,N2),(N1>N2-> N is N1-N2,big_str(St1,N);N is N
 big_str(_,0):-!.
 big_str(Str,Num):-name(St,Str),write(St),nl,Num1 is Num-1,big_str(Str,Num1).
 
+abc:-read_str(St,_),abc(St,St1),write_str(St1).
+
+abc([H1,H2,H3|T],List1):-H1=97,H2=98,H3=99,List1 = [119,119,119|T],!.
+abc(List,List1):-append1(List,[122,122,122],List1),!.
