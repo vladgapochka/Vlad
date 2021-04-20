@@ -124,3 +124,12 @@ del_abc:-read_str(St,_),del_abc(St,[],NL),write_str(NL).
 del_abc([],NL,NL):-!.
 del_abc([97,98,99,H|T],Buffer,NL):-H>47,H<58,del_abc([H|T],Buffer,NL),!.
 del_abc([H|T],Buffer,NL):-append1(Buffer,[H],BufferN),del_abc(T,BufferN,NL).
+
+kol_aba:-read_str(St,_),kol_aba(St,0,Kol),write(Kol).
+kol_aba([],K,K):-!.
+kol_aba([97,98,97|T],K,Kol):-K1 is K+1,kol_aba(T,K1,Kol),!.
+kol_aba([_|T],K,Kol):-kol_aba(T,K,Kol).
+
+
+
+
