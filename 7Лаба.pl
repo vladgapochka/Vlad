@@ -130,6 +130,13 @@ kol_aba([],K,K):-!.
 kol_aba([97,98,97|T],K,Kol):-K1 is K+1,kol_aba(T,K1,Kol),!.
 kol_aba([_|T],K,Kol):-kol_aba(T,K,Kol).
 
+del_probel:-read_str(St,_),del_probel(St,0,[],NSt),del_probel(NSt,StStart),reverse(StStart,StEnd),del_probel(StEnd,Stroka),reverse(Stroka,StrokaR),write_str(StrokaR).
+del_probel([],_,NL,NL):-!.
+del_probel([32|T],0,Buffer,NL):-append1(Buffer,[32],BufferN),del_probel(T,1,BufferN,NL),!.
+del_probel([32|T],KolWS,Buffer,NL):-del_probel(T,KolWS,Buffer,NL),!.
+del_probel([H|T],_,Buffer,NL):-append1(Buffer,[H],BufferN),del_probel(T,0,BufferN,NL),!.
+del_probel([32|T],NSt):-del_probel(T,NSt),!.
+del_probel(Nst,Nst):-!.
 
 
 
