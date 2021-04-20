@@ -108,3 +108,9 @@ soderj:-read_str(Str,_),soderj(Str).
 soderj([]):-!.
 soderj([H|_]):-H\=97,H\=98,H\=99,!,fail.
 soderj([_|T]):-soderj(T).
+
+
+zam_wo_le:-read_str(Str,_),zam_wo_le(Str,[],NL),write_str(NL).
+zam_wo_le([],NL,NL):-!.
+zam_wo_le([119,111,114,100|T],Buffer,NL):-append1(Buffer,[108,101,116,116,101,114],BufferN),zam_wo_le(T,BufferN,NL),!.
+zam_wo_le([H|T],Buffer,NL):-append1(Buffer,[H],BufferN),zam_wo_le(T,BufferN,NL),!.
