@@ -41,3 +41,12 @@ kol_repeat_in_list([H|T],X,K,Kol):-(H=X -> K1 is K+1,kol_repeat_in_list(T,X,K1,K
 chsv:-read_str(A,_),append1([32],A,A1),reverse(A1,AR),list_words(AR,[],LW,[]),chsv(LW,_,Word,0,_),write_str(Word).
 chsv([],Word,Word,Kol,Kol):-!.
 chsv([H|T],W,Word,K,Kol):-kol_repeat_in_list([H|T],H,K1),(K1>K -> Kol1 = K1,W1=H,chsv(T,W1,Word,K1,Kol1);chsv(T,W,Word,K,Kol)).
+
+prover:-read_str(A,Length),(Length>5 -> prover(A),reverse(A,AR),prover(AR);prover(A,Length)).
+prover([H1|[H2|[H3|_]]]):-put(H1),put(H2),put(H3),!.
+prover([_|_],0):-!.
+prover([H|T],Length):-put(H),L1 is Length-1,prover([H|T],L1).
+provLen([H1|[H2|[H3|_]]]):-put(H3),put(H2),put(H1),!.
+
+length_list([],0):-!.
+length_list([_|T],L):-length_list(T,L1),L is L1+1.
