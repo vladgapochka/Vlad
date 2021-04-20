@@ -138,5 +138,11 @@ del_probel([H|T],_,Buffer,NL):-append1(Buffer,[H],BufferN),del_probel(T,0,Buffer
 del_probel([32|T],NSt):-del_probel(T,NSt),!.
 del_probel(Nst,Nst):-!.
 
+num:-read_str([H|T],_),read_str(St2,_),(in_list(St2,H) -> num(T,St2,[],[],LW);num([H|T],St2,[],[],LW)),write_list_str(LW).
+num([],_,[],LW,LW):-!.
+num([],_,LastWord,LW,ListWord):-append1(LW,[LastWord],ListWord),!.
+num([H|T],List2,BufferWord,LW,ListWord):-not(in_list(List2,H)),append1(BufferWord,[H],BufferWordN),num(T,List2,BufferWordN,LW,ListWord),!.
+num([_|T],List2,BufferWord,LW,ListWord):-append1(LW,[BufferWord],NLW),num(T,List2,[],NLW,ListWord).
+
 
 
