@@ -97,3 +97,9 @@ zamch([],_,St,St):-!.
 zamch([H|T],Counter,NSt,NStr):-Counter1 is Counter+1,0 is Counter1 mod 2,(H\=97,H\=98 -> append1([97],NSt,NSt1),zamch(T,Counter1,NSt1,NStr),!;
                                                                              append1([99],NSt,NSt1),zamch(T,Counter1,NSt1,NStr)),!.
 zamch([H|T],Counter,NSt,NStr):-Counter1 is Counter+1,append1([H],NSt,NSt1),zamch(T,Counter1,NSt1,NStr).
+
+
+kol_ch:-read_str(St,_),kol_ch(St,0,Kol),write(Kol).
+kol_ch([],K,K):-!.
+kol_ch([H|T],K,Kol):-H>47,H<58,K1 is K+1,kol_ch(T,K1,Kol),!.
+kol_ch([_|T],K,Kol):-kol_ch(T,K,Kol),!.
