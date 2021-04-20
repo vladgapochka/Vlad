@@ -103,3 +103,8 @@ kol_ch:-read_str(St,_),kol_ch(St,0,Kol),write(Kol).
 kol_ch([],K,K):-!.
 kol_ch([H|T],K,Kol):-H>47,H<58,K1 is K+1,kol_ch(T,K1,Kol),!.
 kol_ch([_|T],K,Kol):-kol_ch(T,K,Kol),!.
+
+soderj:-read_str(Str,_),soderj(Str).
+soderj([]):-!.
+soderj([H|_]):-H\=97,H\=98,H\=99,!,fail.
+soderj([_|T]):-soderj(T).
