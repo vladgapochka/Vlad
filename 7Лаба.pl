@@ -86,3 +86,8 @@ abc:-read_str(St,_),abc(St,St1),write_str(St1).
 
 abc([H1,H2,H3|T],List1):-H1=97,H2=98,H3=99,List1 = [119,119,119|T],!.
 abc(List,List1):-append1(List,[122,122,122],List1),!.
+
+long:-read_str(Str,Length),(Length>10 -> long(Str,N); long(Str,Length,12,N)),write_str(N).
+long(Str,N):-N=[_,_,_,_,_,_],append1(N,_,Str),!.
+long(N,12,_,N):-!.
+long(Str,L,Length,N):-L1 is L+1,append1(Str,[111],Str1),long(Str1,L1,Length,N).
