@@ -119,3 +119,8 @@ del_x:-read_str(St,_),del_x(St,[],NL),write_str(NL).
 del_x([],NL,NL):-!.
 del_x([120,97,98,99|T],Buffer,NL):-append1(Buffer,[97,98,99],BufferN),del_x(T,BufferN,NL),!.
 del_x([H|T],Buffer,NL):-append1(Buffer,[H],BufferN),del_x(T,BufferN,NL).
+
+del_abc:-read_str(St,_),del_abc(St,[],NL),write_str(NL).
+del_abc([],NL,NL):-!.
+del_abc([97,98,99,H|T],Buffer,NL):-H>47,H<58,del_abc([H|T],Buffer,NL),!.
+del_abc([H|T],Buffer,NL):-append1(Buffer,[H],BufferN),del_abc(T,BufferN,NL).
