@@ -114,3 +114,8 @@ zam_wo_le:-read_str(Str,_),zam_wo_le(Str,[],NL),write_str(NL).
 zam_wo_le([],NL,NL):-!.
 zam_wo_le([119,111,114,100|T],Buffer,NL):-append1(Buffer,[108,101,116,116,101,114],BufferN),zam_wo_le(T,BufferN,NL),!.
 zam_wo_le([H|T],Buffer,NL):-append1(Buffer,[H],BufferN),zam_wo_le(T,BufferN,NL),!.
+
+del_x:-read_str(St,_),del_x(St,[],NL),write_str(NL).
+del_x([],NL,NL):-!.
+del_x([120,97,98,99|T],Buffer,NL):-append1(Buffer,[97,98,99],BufferN),del_x(T,BufferN,NL),!.
+del_x([H|T],Buffer,NL):-append1(Buffer,[H],BufferN),del_x(T,BufferN,NL).
