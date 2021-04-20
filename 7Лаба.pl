@@ -60,3 +60,12 @@ list_entry_el([H|T],El,Num,Chet):-Chet1 is Chet+1,(H = El,Num1 = Chet1 -> write(
 index_3:-read_str(St,_),index_3(St,0).
 index_3([],_):-!.
 index_3([H|T],Counter):-Counter1 is Counter+1,(0 is Counter1 mod 3 -> put(H),index_3(T,Counter1);index_3(T,Counter1)).
+
+
+k_c_s([_|[]],KZ,KZ):-!.
+k_c_s([H1|[H2|T3]],KZero,KolZero):-((H1=43;H1=45),H2=48 -> KZero1 is KZero+1,k_c_s([H2|T3],KZero1,KolZero);k_c_s([H2|T3],KZero,KolZero)).
+kol_p_m:-read_str(St,_),kol_p_m(St,0,KP,0,KM),k_c_s(St,0,KZ),write("Plus = "),write(KP),nl,write("Minus = "),write(KM),nl,write("Zero = "),write(KZ),!.
+kol_p_m([],KP,KP,KM,KM):-!.
+kol_p_m([43|T],KP,KolP,KM,KolM):-KP1 is KP+1,kol_p_m(T,KP1,KolP,KM,KolM).
+kol_p_m([45|T],KP,KolP,KM,KolM):-KM1 is KM+1,kol_p_m(T,KP,KolP,KM1,KolM).
+kol_p_m([_|T],KP,KolP,KM,KolM):-kol_p_m(T,KP,KolP,KM,KolM).
