@@ -77,3 +77,8 @@ pr_w([Head|Tail],I,Ind):-(Head =:=119 -> Ind is I;I1 is I+1,pr_w(Tail,I1,Ind)).
 
 pr_x([],_,_):-write("Не существует x"),!,fail.
 pr_x([Head|Tail],I,Ind):-(Head =:=120 -> Ind is I;I1 is I+1,pr_x(Tail,I1,Ind)).
+
+big:-read_str(St1,N1),read_str(St2,N2),(N1>N2-> N is N1-N2,big_str(St1,N);N is N2-N1,big_str(St2,N)).
+big_str(_,0):-!.
+big_str(Str,Num):-name(St,Str),write(St),nl,Num1 is Num-1,big_str(Str,Num1).
+
