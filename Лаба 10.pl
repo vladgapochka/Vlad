@@ -109,3 +109,21 @@ p(L,T):-p_1(L1,T),L1==L.
 p_1(1,[_]):-!.
 p_1(K,[[_,X]|[[X,Y]|T]]):-p_1(K1,[[X,Y]|T]),K is K1+1.
 p_1(K,[[_,X]|[[Y,X]|T]]):-p_1(K1,[[X,Y]|T]),K is K1+1.
+
+%4Дан неориентированный граф. Найти число внешней устойчивости графа.
+vnesh_yst_gr:-get_Ver(V),nl,get_edges(V,E),ch_vn_u(V,E).
+
+ch_vn_u(V,E):-length(V,L),po(L,V,E,L,M),write("число внешней устойчивости = "),write(M).
+
+po(_,[],_,M,M):-!.
+po(L,[H],E,M1,M):-p_23([H],E,0,L1),L2 is L-1,(L1==L2->po(L,[],E,1,M);po(L,[],E,M1,M)),!.
+po(L,[H|P],E,M1,M):-po(P,[H],E,L,1,M2),(nonvar(M2)->(M2<M1->po(L,P,E,M2,M);po(L,P,E,M1,M));po(L,P,E,M1,M)),!.
+
+po([H|P],V,E,L,M1,M):-p_23(V,E,0,L1),length(V,Lv),L2 is L-Lv,L1\=L2->M2 is M1+1,po(P,[H|V],E,L,M2,M),!.
+po(_,V,E,L,M1,M1):-p_23(V,E,0,L1),length(V,Lv),L2 is L-Lv,L1==L2,!.
+po([],_,_,_,_,_):-!.
+
+p_23(_,[],K,K):-!.
+p_23(V,[[X,Y]|T],L,K):-in_list(V,X),not(in_list(V,Y)),L1 is L+1,p_23(V,T,L1,K).
+p_23(V,[[X,Y]|T],L,K):-in_list(V,Y),not(in_list(V,X)),L1 is L+1,p_23(V,T,L1,K).
+p_23(V,[_|T],L,K):-p_23(V,T,L,K),!.
