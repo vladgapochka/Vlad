@@ -93,3 +93,19 @@ j_st([0|L],N,S,Len):-N1 is N+1,j_st(L,N1,S,Len),!.
 
 write_matr([]):-!.
 write_matr([H|T]):-write(H),nl,write_matr(T),!.
+
+
+%3 Дан неориентированный полуэйлеров граф. Найти Эйлеров путь.
+aler_gr:-get_Ver(V),nl,get_edges(V,E),aler_N(E).
+
+in_list_ex([El|T],El,T).
+in_list_ex([H|T],El,[H|Tail]):-in_list_ex(T,El,Tail).
+
+b_a_r([],[]):-!.
+b_a_r(A,[El|Perm]):-in_list_ex(A,El,A1),b_a_r(A1,Perm).
+
+aler_N(E):-b_a_r(E,Way),length(E,L),p(L,Way),write(Way).
+p(L,T):-p_1(L1,T),L1==L.
+p_1(1,[_]):-!.
+p_1(K,[[_,X]|[[X,Y]|T]]):-p_1(K1,[[X,Y]|T]),K is K1+1.
+p_1(K,[[_,X]|[[Y,X]|T]]):-p_1(K1,[[X,Y]|T]),K is K1+1.
