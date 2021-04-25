@@ -55,4 +55,41 @@ s_edges1(_,[],[]):-!.
 s_edges1(E1,[H|E2],[H|E3]):-not(in_list(E1,H))->s_edges1(E1,E2,E3),!.
 s_edges1(E1,[_|E2],E3):-s_edges1(E1,E2,E3),!.
 
+%2 Дан код Прюфера, построить матрицу смежности вершин дерева.
+kod_pr:-write("код прюфера: "),read_str(Code,Len),N is Len+2,b_e_list(Code,N,E),build_matr(E,N,M),write_matr(M).
 
+make_ar(0,[]):-!.
+make_ar(K,[K|Tail]):-K1 is K-1,make_ar(K1,Tail).
+
+in_list_ex([El|T],El,T):-!.
+in_list_ex([H|T],El,[H|Tail]):-in_list_ex(T,El,Tail),!.
+
+b_e_list(C,N,E):-make_ar(N,V),to_int(C,C1),build_edges(C1,[],E,V).
+
+to_int([],[]):-!.
+to_int([H|V],[H1|V1]):-H1 is H-48,to_int(V,V1),!.
+
+build_edges([],E1,E,V):-append(E1,[V1],E2),reverse(V,V1),append(E2,[V1],E),!.
+build_edges([N|C],E1,E,V):-min(V,[N|C],Min),in_list_ex(V,Min,V1),append(E1,[[N,Min]],E2),append(E2,[[Min,N]],E3),build_edges(C,E3,E,V1),!.
+
+min([H|L],C,M):-(not(in_list(C,H))->min(L,C,H,M);min(L,C,M)),!.
+min([],_,M,M):-!.
+min([H|L],C,M1,M):-(not(in_list(C,H)),M1>H->min(L,C,H,M);min(L,C,M1,M)),!.
+
+build_matr(E,N,M1):-i_st([],1,E,M1,N).
+
+i_st(M,N,_,M,LenN):-N>LenN,!.
+i_st(M,N,E,M1,LenN):-in_str(E,N,S,E1),j_st(L,S,LenN),N1 is N+1,append(M,[L],M2),i_st(M2,N1,E1,M1,LenN),!.
+
+in_str(E,N,S,E1):-in_str(E,N,S,E,E1),!.
+in_str([],_,[],E1,E1):-!.
+in_str([[N,H2]|E],N,[H2|S],E2,E1):-in_list_ex(E2,[N,H2],E3),in_str(E,N,S,E3,E1),!.
+in_str([_|E],N,S,E2,E1):-in_str(E,N,S,E2,E1),!.
+
+j_st(L,S,LenN):-j_st(L,1,S,LenN).
+j_st([],N1,_,N):-N1>N,!.
+j_st([1|L],N,S,Len):-in_list(S,N),N1 is N+1,j_st(L,N1,S,Len),!.
+j_st([0|L],N,S,Len):-N1 is N+1,j_st(L,N1,S,Len),!.
+
+write_matr([]):-!.
+write_matr([H|T]):-write(H),nl,write_matr(T),!.
