@@ -127,3 +127,22 @@ p_23(_,[],K,K):-!.
 p_23(V,[[X,Y]|T],L,K):-in_list(V,X),not(in_list(V,Y)),L1 is L+1,p_23(V,T,L1,K).
 p_23(V,[[X,Y]|T],L,K):-in_list(V,Y),not(in_list(V,X)),L1 is L+1,p_23(V,T,L1,K).
 p_23(V,[_|T],L,K):-p_23(V,T,L,K),!.
+
+%5 Дан неориентированный граф. Построить все максимальные паросочетания.
+max_parosochet:-get_Ver(V),nl,get_edges(V,E),not(parosochet(E,[])).
+
+parosochet([H|E1],S):-parosochet([H],E1,T),check_parosochet(T,S),write(T),nl,parosochet(E1,[H|S]).
+parosochet(T,[],T).
+parosochet(T,[[A,B]|E],T1):-check_ed(T,[A,B])->parosochet([[A,B]|T],E,T1);parosochet(T,E,T1).
+
+check_parosochet(_,[]):-!.
+check_parosochet(T,[[A,B]|N]):-check_ed(T,[A,B])->!,fail;check_parosochet(T,N),!.
+
+check_ed([],_):-!.
+check_ed([[X,Y]|_],[X,Y]):-!,fail.
+check_ed([[X,Y]|_],[Y,X]):-!,fail.
+check_ed([[_,Y]|_],[Y,_]):-!,fail.
+check_ed([[_,Y]|_],[_,Y]):-!,fail.
+check_ed([[X,_]|_],[_,X]):-!,fail.
+check_ed([[X,_]|_],[X,_]):-!,fail.
+check_ed([_|T],[A,B]):-check_ed(T,[A,B]),!.
