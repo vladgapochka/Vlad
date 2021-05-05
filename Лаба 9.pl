@@ -92,3 +92,15 @@ select_p(Word,Head,Sim):-(Head is 1->Word=[Sim,_,_,_,_],!);
 
 in_free_p([H1,H2,H3,H4,H5],Sim):-(var(H1)->H1 is Sim),!;
 (var(H2)->H2 is Sim),!;(var(H3)->H3 is Sim),!; (var(H4)->H4 is Sim),!;(var(H5)->H5 is Sim).
+
+%Задание 3 Дано множество {a,b,c,d,e,f}. Построить все слова длины 5, в
+%которых ровно 2 буквы a, остальные буквы не повторяются. Вывод в файл.
+razmeshchen:-tell('C:/Users/Владосик/Desktop/Пролог/лаба9'),not(razmeshchen_1),told.
+razmeshchen_1:-make_ar(5,Pos),sochet(Pos_a,2,Pos),put_p(Word,Pos_a,[97]),
+		 in_list_exlude([98,99,100,101,102],S1,NList),
+		 in_free_p(Word,S1),
+		 in_list_exlude(NList,S2,NList1),
+		 in_free_p(Word,S2),
+		 in_list_exlude(NList1,S3,_),
+		 in_free_p(Word,S3),
+		 write_str(Word),nl,fail.
