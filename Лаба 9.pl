@@ -104,3 +104,18 @@ razmeshchen_1:-make_ar(5,Pos),sochet(Pos_a,2,Pos),put_p(Word,Pos_a,[97]),
 		 in_list_exlude(NList1,S3,_),
 		 in_free_p(Word,S3),
 		 write_str(Word),nl,fail.
+
+%Задание 4 Дано множество {a,b,c,d,e,f}. Построить все слова длины 5, в
+%которых ровно одна буква повторяется 2 раза, остальные буквы не
+%повторяются. Вывод в файл.
+
+one_character_2_times:-tell('C:/Users/Владосик/Desktop/Пролог/лаба9'),not(one_character_2_times_),told.
+one_character_2_times_:-make_ar(5,Pos),sochet(Pos_simb,2,Pos),in_list([97,98,99,100,101,102],Simbol),
+		 put_p(Word,Pos_simb,[Simbol]),in_list_exlude([97,98,99,100,101,102],Simbol,List),
+		 in_list_exlude(List,S1,NList),
+		 in_free_p(Word,S1),
+		 in_list_exlude(NList,S2,NList1),
+		 in_free_p(Word,S2),
+		 in_list_exlude(NList1,S3,_),
+		 in_free_p(Word,S3),
+		 write_str(Word),nl,fail.
