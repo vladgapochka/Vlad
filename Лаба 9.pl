@@ -246,3 +246,17 @@ in_free_pos9([H1,H2,H3,H4,H5,H6,H7,H8,H9],Sim):-(var(H1)->H1 is Sim),!;
 				  (var(H7)->H7 is Sim),!;
 				  (var(H8)->H8 is Sim),!;
 				  (var(H9)->H9 is Sim).
+%Задание 9 Дано множество {a,b,c,d,e,f}. Построить все слова длины 7, в
+%которых больше двух букв а. Вывод в файл.
+
+length_4_is_greater_than_2_a:-tell('C:/Users/Владосик/Desktop/Пролог/лаба9'),not(length_4_is_greater_than_2_a_),nl,told.
+length_4_is_greater_than_2_a_:-make_ar(7,Pos),sochet(Pos_a,3,Pos),put_pos73(Word,Pos_a,[97]),
+		 in_list([97,98,99,100,101,102],S1),
+		 in_free_pos7(Word,S1),
+		 in_list([97,98,99,100,101,102],S2),
+		 in_free_pos7(Word,S2),
+		 in_list([97,98,99,100,101,102],S3),
+		 in_free_pos7(Word,S3),
+		 in_list([97,98,99,100,101,102],S3),
+		 in_free_pos7(Word,S3),
+		 write_str(Word),nl,fail.
